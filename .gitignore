@@ -1,0 +1,11 @@
+.DS_Store
+node_modules/
+.env
+*.log
+*.class
+*.jar
+target/
+bin/
+build/
+.idea/
+.vscode/

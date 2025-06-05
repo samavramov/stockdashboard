@@ -10,7 +10,7 @@ public class sentiment {
     public String url3;
     public String llmAnalysis;
 
-    public sentiment(String stockSymbol,String companyName, double sentimentValue,Date sentimentTimestamp,String url1,String url2,String url3,String llmAnalysis) {
+    public sentiment(String stockSymbol,String companyName, double sentimentValue, Date sentimentTimestamp, String url1, String url2, String url3, String llmAnalysis) {
         this.stockSymbol = stockSymbol;
         this.companyName = companyName;
         this.sentimentValue = sentimentValue;
@@ -19,5 +19,18 @@ public class sentiment {
         this.url2 = url2;
         this.url3 = url3;
         this.llmAnalysis = llmAnalysis;
+    }
+    @Override
+    public String toString() {
+        return "Sentiment{" +
+                "stockSymbol='" + stockSymbol + '\'' +
+                ", companyName='" + companyName + '\'' +
+                ", sentimentValue=" + sentimentValue +
+                ", sentimentTimestamp=" + sentimentTimestamp +
+                ", url1='" + url1 + '\'' +
+                ", url2='" + url2 + '\'' +
+                ", url3='" + url3 + '\'' +
+                ", llmAnalysis='" + llmAnalysis + '\'' +
+                '}';
     }
 }

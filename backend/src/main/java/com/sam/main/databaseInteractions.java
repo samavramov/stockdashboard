@@ -12,9 +12,9 @@ import java.util.Date;
 public class databaseInteractions {
 
     // Update these with your actual PostgreSQL connection details
-    private static final String DB_URL      = "jdbc:postgresql://localhost:5432/your_database";
-    private static final String DB_USER     = "your_username";
-    private static final String DB_PASSWORD = "your_password";
+    private static final String DB_URL      = "jdbc:postgresql://localhost:5432/user";
+    private static final String DB_USER     = "user";
+    private static final String DB_PASSWORD = "pass";
 
     /**
      * Inserts the given sentiment object into the Stocks table.
@@ -72,13 +72,17 @@ public class databaseInteractions {
      * Returns a list of sentiment objects for the given stockSymbol,
      * ordered by SentimentTimestamp descending (latest first).
      */
-    public ArrayList<sentiment> getLatestSentimentsByStockSymbol(String stockSymbol) {
+    public ArrayList<sentiment> getLatestSentimentsByStockSymbol(String stockSymbol, Integer limit) {
         ArrayList<sentiment> results = new ArrayList<>();
+        if(limit > 20){
+            limit = 20;
+        }
         String sql =
             "SELECT StockSymbol, CompanyName, Sentiment, SentimentTimestamp, URLS, LLMAnalysis " +
             "FROM Stocks " +
             "WHERE StockSymbol = ? " +
-            "ORDER BY SentimentTimestamp DESC";
+            "ORDER BY SentimentTimestamp DESC " + 
+            "LIMIT " + limit; 
 
         try (
             Connection conn = DriverManager.getConnection(DB_URL, DB_USER, DB_PASSWORD);
@@ -119,4 +123,6 @@ public class databaseInteractions {
 
         return results;
     }
+
+    
 }
